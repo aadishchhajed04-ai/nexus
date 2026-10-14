@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/*
+  Token system -- a calm, investigation-desk palette, not the default
+  warm-cream/terracotta or near-black/neon-green look. Deliberately
+  desaturated risk colors: this is a prioritization tool an analyst
+  stares at for hours, not an alarm panel.
+*/
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --color-bg: #11141a;
+  --color-surface: #171b22;
+  --color-surface-raised: #1d222b;
+  --color-border: #262c36;
+  --color-border-subtle: #1e232c;
+
+  --color-text: #e8eaed;
+  --color-text-muted: #939aa6;
+  --color-text-faint: #626a76;
+
+  --color-accent: #6c8cff;
+  --color-accent-soft: #6c8cff1a;
+
+  --color-risk-low: #5fbe86;
+  --color-risk-medium: #e8b84b;
+  --color-risk-high: #e88a4b;
+  --color-risk-critical: #e85d5d;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Technical identifiers (IPs, ports, event/incident IDs, hashes) use
+   monospace throughout -- a functional convention from real security
+   tooling for scanability, not decoration. */
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+::selection {
+  background: var(--color-accent-soft);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

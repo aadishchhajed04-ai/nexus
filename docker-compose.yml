@@ -1,0 +1,23 @@
+services:
+  backend:
+    build: .
+    ports:
+      - "8000:8000"   # REST + WebSocket
+      - "9090:9090"   # TCP socket backbone, for agents running outside the container
+    environment:
+      - NEXUS_API_TOKEN=dev-token-change-me
+    volumes:
+      - nexus-db:/app/database
+    # Nmap collector needs to reach whatever it's scanning; if that's
+    # the host network rather than other containers, run with
+    # `network_mode: host` instead of the default bridge network.
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  nexus-db:

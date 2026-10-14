@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+scapy
+psutil
+reportlab
+websockets
+
+# CAPA is intentionally NOT here -- it needs its rules repository fetched
+# separately (see collectors/capa_collector.py) and is meant to be run
+# against specific authorized samples, not bundled with every install.
+# flare-capa
